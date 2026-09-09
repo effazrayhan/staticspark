@@ -8,11 +8,21 @@ from lib import social, supa
 BATCH_SIZE = 3
 
 
+CAPTION = """A quiet spark to light your day. ⚡️
+
+Save this post to revisit when you need a reminder, and share it with someone who might need to hear it today.
+
+—
+💡 Follow @static_spark_ for daily reflections, quiet wisdom, and mindful inspiration.
+
+#staticspark #staticsparkdaily #staticsparkquotes #mindfulness #dailyinspiration #wordsofwisdom"""
+
+
 def caption_for(card: dict) -> str:
     quote = card["quote"]
     author = card.get("author") or ""
     base = f"{quote}" + (f" — {author}" if author else "")
-    return f"{base}\n\n#staticspark #staticsparkdaily #staticsparkquotes"
+    return f"{base}\n\n{CAPTION}"
 
 
 def main() -> None:
