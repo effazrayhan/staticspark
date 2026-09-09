@@ -32,10 +32,10 @@
     }
 
     .instagram-card {
-      width: 540px;
-      height: 540px;
+      width: 1080px;
+      height: 1080px;
       background: linear-gradient(170deg, #8aaa9b 0%, #6e9080 50%, #5f7f71 100%);
-      padding: 20px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -52,7 +52,7 @@
       justify-content: center;
       align-items: center;
       background-color: var(--bg-dark);
-      padding: 16px 24px;
+      padding: 32px 48px;
       border-radius: 2px 2px 0 0;
       position: relative;
       overflow: hidden;
@@ -75,7 +75,7 @@
     .brand-name {
       font-family: 'Cormorant Garamond', 'Georgia', serif;
       font-weight: 600;
-      font-size: 1.15rem;
+      font-size: 2.3rem;
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--gold);
@@ -83,68 +83,71 @@
 
     .quote-box {
       background-color: var(--card-bg);
-      padding: 32px 28px 24px;
+      padding: 64px 56px 48px;
       border-radius: 0 0 2px 2px;
       text-align: center;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-bottom: 12px;
+      margin-bottom: 24px;
       position: relative;
     }
 
     .quote-box::before {
       content: '\201C';
       font-family: 'Cormorant Garamond', 'Georgia', serif;
-      font-size: 5rem;
+      font-size: 10rem;
       color: var(--accent-sage);
       opacity: 0.3;
       position: absolute;
-      top: 6px;
-      left: 24px;
+      top: 12px;
+      left: 48px;
       line-height: 1;
       pointer-events: none;
     }
 
     .quote-divider {
-      width: 40px;
+      width: 80px;
       height: 1px;
       background: var(--gold);
-      margin: 0 auto 18px;
+      margin: 0 auto 36px;
       opacity: 0.6;
     }
 
     .quote-text {
       font-family: 'Caveat', cursive;
-      font-size: 1.45rem;
+      font-size: 2.9rem;
       line-height: 1.55;
       color: #2a2a2a;
       font-weight: 600;
-      margin-bottom: 18px;
-      padding: 0 8px;
+      margin-bottom: 36px;
+      padding: 0 16px;
     }
 
-    .quote-author {
+    .quote-source {
       font-family: 'Cormorant Garamond', 'Georgia', serif;
-      font-size: 0.85rem;
+      font-size: 1.05rem;
       color: var(--bg-dark);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
-    .quote-author::before {
-      content: '\2014  ';
+    .quote-source::before {
+      content: 'Source: ';
+      font-weight: 400;
       color: var(--gold);
+      text-transform: none;
+      letter-spacing: 1px;
     }
 
     .quote-date {
       font-family: 'Cormorant Garamond', 'Georgia', serif;
-      font-size: 0.8rem;
+      font-size: 1.6rem;
       color: var(--text-gray);
-      margin-top: 8px;
+      margin-top: 16px;
       letter-spacing: 1px;
     }
 
@@ -152,7 +155,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 8px 10px 8px;
+      padding: 0 16px 20px 16px;
     }
 
     .icons-left {
@@ -161,8 +164,8 @@
     }
 
     .icon {
-      width: 18px;
-      height: 18px;
+      width: 36px;
+      height: 36px;
       stroke: var(--card-bg);
       fill: none;
       stroke-width: 1.8;
@@ -182,16 +185,16 @@
 
     .ig-handle {
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1.9rem;
       letter-spacing: 1.5px;
-      margin-bottom: 6px;
+      margin-bottom: 12px;
       text-decoration: none;
       color: var(--card-bg);
       display: block;
     }
 
     .hashtags {
-      font-size: 0.72rem;
+      font-size: 1.44rem;
       opacity: 0.75;
       letter-spacing: 0.5px;
       word-spacing: 2px;
@@ -211,7 +214,7 @@
       <p class="quote-text" id="quote-text">
         "The spark you create, the energy you diffuse, isn't just an individual action; it's a profound act of leadership and love. In every kind word, in every dedicated moment, you light a path for others to find their own brilliance."
       </p>
-      <div class="quote-author" id="quote-author"></div>
+      <div class="quote-source" id="quote-source"></div>
       <div class="quote-date" id="quote-date"></div>
     </div>
 

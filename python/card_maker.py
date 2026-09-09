@@ -21,9 +21,9 @@ def render_card(page, quote: str, author: str) -> bytes:
     page.goto(TEMPLATE.as_uri())
     page.eval_on_selector("#quote-text", "(el, q) => el.textContent = q", f"“{quote}”")
     if author:
-        page.eval_on_selector("#quote-author", "(el, a) => el.textContent = a", author)
+        page.eval_on_selector("#quote-source", "(el, a) => el.textContent = a", author)
     else:
-        page.eval_on_selector("#quote-author", "el => el.style.display = 'none'")
+        page.eval_on_selector("#quote-source", "el => el.style.display = 'none'")
     page.eval_on_selector(
         "#quote-date", "(el, d) => el.textContent = d", date.today().strftime("%B %d, %Y")
     )
@@ -38,7 +38,7 @@ def main() -> None:
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page(viewport={"width": 540, "height": 540})
+        page = browser.new_page(viewport={"width": 1080, "height": 1080})
 
         for q in pending:
             png = render_card(page, q["quote"], q.get("author", ""))
