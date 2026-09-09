@@ -3,6 +3,8 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { listQuotes } from "@/lib/sheets";
 import { latestRun } from "@/lib/github";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const [quotes, cardsReady, cardsPosted, quoteMakerRun, cardMakerRun, postEngineRun] =
     await Promise.all([

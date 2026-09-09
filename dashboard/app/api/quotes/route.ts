@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { listQuotes } from "@/lib/sheets";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const quotes = await listQuotes("pending");
   return NextResponse.json(quotes);
