@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // and trigger posting jobs, so it shouldn't be left open). Swap for real auth if this
 // ever needs per-user accounts.
 export function proxy(req: NextRequest) {
-  const authed = req.cookies.get("ss_auth")?.value === "abcd1234";
+  const authed = req.cookies.get("ss_auth")?.value === process.env.DASHBOARD_PASSWORD;
   if (authed) return NextResponse.next();
 
   if (req.nextUrl.pathname.startsWith("/api/")) {
@@ -15,5 +15,5 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!login|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!login|api/login|_next/static|_next/image|favicon.ico).*)"],
 };
