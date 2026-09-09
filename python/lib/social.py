@@ -17,14 +17,31 @@ def _raise_for_status(r: requests.Response) -> None:
 
 
 def post_facebook(image_url: str, caption: str) -> None:
+    """Two-step publish so the image lands as a normal Feed post, not just a
+    Photos/Uploads gallery item: upload the photo unpublished, then create a
+    /feed post that attaches it via attached_media.
+    """
     page_id = os.environ["FB_PAGE_ID"]
     token = os.environ["FB_PAGE_ACCESS_TOKEN"]
-    r = requests.post(
+
+    uploaded = requests.post(
         f"{GRAPH}/{page_id}/photos",
-        data={"url": image_url, "caption": caption, "access_token": token},
+        data={"url": image_url, "published": "false", "access_token": token},
         timeout=30,
     )
-    _raise_for_status(r)
+    _raise_for_status(uploaded)
+    photo_id = uploaded.json()["id"]
+
+    posted = requests.post(
+        f"{GRAPH}/{page_id}/feed",
+        data={
+            "message": caption,
+            "attached_media[0]": f'{{"media_fbid":"{photo_id}"}}',
+            "access_token": token,
+        },
+        timeout=30,
+    )
+    _raise_for_status(posted)
 
 
 def post_instagram(image_url: str, caption: str) -> None:
