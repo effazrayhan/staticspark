@@ -6,8 +6,19 @@ type Quote = { row: number; quote: string; author: string; status: string; sourc
 
 export default function QuotesPage() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  const load = () => fetch("/api/quotes").then((r) => r.json()).then(setQuotes);
+  const load = () =>
+    fetch("/api/quotes")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setQuotes(data);
+          setError(null);
+        } else {
+          setError(data.error ?? "Failed to load quotes.");
+        }
+      });
 
   useEffect(() => {
     load();
@@ -21,7 +32,8 @@ export default function QuotesPage() {
   return (
     <div className="max-w-2xl space-y-4">
       <h1 className="text-xl font-semibold">Quote review queue</h1>
-      {quotes.length === 0 && <p className="text-sm text-neutral-500">Nothing pending.</p>}
+      {error && <p className="text-sm text-red-500">{error}</p>}
+      {!error && quotes.length === 0 && <p className="text-sm text-neutral-500">Nothing pending.</p>}
       {quotes.map((q) => (
         <div key={q.row} className="border border-neutral-200 rounded p-4 space-y-2">
           <p className="italic">&ldquo;{q.quote}&rdquo;</p>
